@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package feed.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum Reaction {
+  REACTION_UNSPECIFIED = 0;
+  REACTION_LIKE = 1;
+  REACTION_LOVE = 2;
+  REACTION_HAHA = 3;
+  REACTION_WOW = 4;
+  REACTION_SAD = 5;
+  REACTION_ANGRY = 6;
+}
+
+message PostReaction {
+  string post_id = 1;
+  string user_id = 2;
+  Reaction reaction = 3;
+}
+
+message PostComment {
+  string id = 1;
+  string user_id = 2;
+  string content = 3;
+  google.protobuf.Timestamp date = 4;
+  repeated PostReaction reactions = 5;
+}
+
+enum AttachmentType {
+  ATTACHMENT_TYPE_UNSPECIFIED = 0;
+  ATTACHMENT_TYPE_IMAGE = 1;
+  ATTACHMENT_TYPE_VIDEO = 2;
+}
+
+message PostAttachment {
+  string id = 1;
+  string post_id = 2;
+  AttachmentType type = 3;
+  int32 position = 4;
+  string url = 5;
+}
+
+message Post {
+  string id = 1;
+  string user_id = 2;
+  optional string content = 3;
+  repeated PostAttachment attachments = 4;
+  google.protobuf.Timestamp date = 5;
+  repeated PostReaction reactions = 6;
+  repeated PostComment comments = 7;
+}

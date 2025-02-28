@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package feed.v1;
+
+import "feed/v1/post.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service FeedService {
+  // Post operations
+  rpc CreatePost(CreatePostRequest) returns (Post);
+  rpc GetPost(GetPostRequest) returns (Post);
+  rpc ListUserPosts(ListUserPostsRequest) returns (ListPostsResponse);
+  rpc ListPosts(ListPostsRequest) returns (ListPostsResponse);
+
+  // Comment operations
+  rpc CreateComment(CreateCommentRequest) returns (PostComment);
+  rpc ListComments(ListCommentsRequest) returns (ListCommentsResponse);
+
+  // Reaction operations
+  rpc AddReaction(AddReactionRequest) returns (PostReaction);
+  rpc RemoveReaction(RemoveReactionRequest) returns (google.protobuf.Empty);
+}
+
+message CreatePostRequest {
+  Post post = 1;
+}
+
+message GetPostRequest {
+  string id = 1;
+}
+
+message ListUserPostsRequest {
+  string user_id = 1;
+  string viewer_id = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message ListPostsRequest {
+  string viewer_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message ListPostsResponse {
+  repeated Post posts = 1;
+}
+
+message CreateCommentRequest {
+  string post_id = 1;
+  PostComment comment = 2;
+}
+
+message ListCommentsRequest {
+  string post_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message ListCommentsResponse {
+  repeated PostComment comments = 1;
+}
+
+message AddReactionRequest {
+  string post_id = 1;
+  string user_id = 2;
+  Reaction reaction = 3;
+}
+
+message RemoveReactionRequest {
+  string post_id = 1;
+  string user_id = 2;
+}

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package statistics.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "statistics/v1/data.proto";
+
+service StatisticsService {
+  rpc GetGPSData(GetGPSDataRequest) returns (GetGPSDataResponse);
+  rpc GetHeartRateData(GetHeartRateDataRequest) returns (GetHeartRateDataResponse);
+  rpc GetCaloriesData(GetCaloriesDataRequest) returns (GetCaloriesDataResponse);
+
+  rpc UploadGPSData(GPSData) returns (google.protobuf.Empty);
+  rpc UploadHeartRateData(HeartRateData) returns (google.protobuf.Empty);
+  rpc UploadCaloriesData(CaloriesData) returns (google.protobuf.Empty);
+}
+
+message GetGPSDataRequest {
+  string exercise_id = 1;
+}
+
+message GetGPSDataResponse {
+  repeated GPSData gps_data = 1;
+}
+
+message GetHeartRateDataRequest {
+  string exercise_id = 1;
+}
+
+message GetHeartRateDataResponse {
+  repeated HeartRateData heart_rate_data = 1;
+}
+
+message GetCaloriesDataRequest {
+  string user_id = 1;
+}
+
+message GetCaloriesDataResponse {
+  repeated CaloriesData calories_data = 1;
+}

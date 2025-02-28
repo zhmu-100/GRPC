@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package notebook.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum NotificationAction {
+  NOTIFICATION_ACTION_UNSPECIFIED = 0;
+  NOTIFICATION_ACTION_COMPLETE = 1;
+  NOTIFICATION_ACTION_DISMISS = 2;
+  NOTIFICATION_ACTION_SNOOZE = 3;
+}
+
+enum NotificationSnooze {
+  NOTIFICATION_SNOOZE_UNSPECIFIED = 0;
+  NOTIFICATION_SNOOZE_5_MINUTES = 1;
+  NOTIFICATION_SNOOZE_15_MINUTES = 2;
+  NOTIFICATION_SNOOZE_30_MINUTES = 3;
+  NOTIFICATION_SNOOZE_1_HOUR = 4;
+  NOTIFICATION_SNOOZE_5_HOURS = 5;
+  NOTIFICATION_SNOOZE_1_DAY = 6;
+}
+
+message Notification {
+  string id = 1;
+  string user_id = 2;
+  string title = 3;
+  string description = 4;
+  google.protobuf.Timestamp create_date = 5;
+  google.protobuf.Timestamp notification_date = 6;
+}

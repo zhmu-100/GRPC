@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package profile.v1;
+
+message Location {
+  string country = 1;
+  string city = 2;
+}
+
+message Birthdate {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+
+message UserProfile {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string image_id = 6;
+  string bio = 7;
+  optional Location location = 8;
+  Birthdate birthdate = 9;
+  double weight = 10;
+  double height = 11;
+  int32 follower_count = 12;
+  int32 following_count = 13;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package diet.v1;
+
+import "diet/v1/food.proto";
+import "google/protobuf/timestamp.proto";
+
+service DietService {
+  rpc CreateMeal(CreateMealRequest) returns (Meal);
+  rpc GetMeal(GetMealRequest) returns (Meal);
+  rpc ListMeals(ListMealsRequest) returns (ListMealsResponse);
+
+  rpc CreateFood(CreateFoodRequest) returns (Food);
+  rpc GetFood(GetFoodRequest) returns (Food);
+  rpc ListFoods(ListFoodsRequest) returns (ListFoodsResponse);
+}
+
+message CreateMealRequest {
+  Meal meal = 1;
+}
+
+message GetMealRequest {
+  string id = 1;
+}
+
+message ListMealsRequest {
+  google.protobuf.Timestamp start_date = 1;
+  google.protobuf.Timestamp end_date = 2;
+}
+
+message ListMealsResponse {
+  repeated Meal meals = 1;
+}
+
+message CreateFoodRequest {
+  Food food = 1;
+}
+
+message GetFoodRequest {
+  string id = 1;
+}
+
+message ListFoodsRequest {
+  string name_filter = 1;
+}
+
+message ListFoodsResponse {
+  repeated Food foods = 1;
+}

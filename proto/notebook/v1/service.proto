@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package notebook.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "notebook/v1/note.proto";
+import "notebook/v1/notification.proto";
+
+service NoteService {
+  rpc CreateNotification(CreateNotificationRequest) returns (Notification);
+  rpc GetNotification(GetNotificationRequest) returns (Notification);
+  rpc ListNotifications(ListNotificationsRequest) returns (ListNotificationsResponse);
+  rpc PerformNotificationAction(NotificationActionRequest) returns (Notification);
+
+  rpc CreateNote(CreateNoteRequest) returns (Note);
+  rpc GetNote(GetNoteRequest) returns (Note);
+  rpc ListNotes(ListNotesRequest) returns (ListNotesResponse);
+  rpc UpdateNote(UpdateNoteRequest) returns (Note);
+  rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty);
+}
+
+message CreateNotificationRequest {
+  Notification notification = 1;
+}
+
+message GetNotificationRequest {
+  string id = 1;
+}
+
+message ListNotificationsRequest {
+  string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message ListNotificationsResponse {
+  repeated Notification notifications = 1;
+}
+
+message NotificationActionRequest {
+  string id = 1;
+  string user_id = 2;
+  NotificationAction action = 3;
+  optional NotificationSnooze snooze_duration = 4;
+}
+
+message CreateNoteRequest {
+  Note note = 1;
+}
+
+message GetNoteRequest {
+  string id = 1;
+}
+
+message ListNotesRequest {
+  string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message ListNotesResponse {
+  repeated Note notes = 1;
+}
+
+message UpdateNoteRequest {
+  Note note = 1;
+}
+
+message DeleteNoteRequest {
+  string id = 1;
+  string user_id = 2;
+}

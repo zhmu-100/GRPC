@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package statistics.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message ExerciseMetadata {
+  string id = 1;
+  string exercise_id = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message UserMetadata {
+  string id = 1;
+  string user_id = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message GPSPosition {
+  google.protobuf.Timestamp timestamp = 1;
+  double latitude = 2;
+  double longitude = 3;
+  double altitude = 4;
+  double speed = 5;
+  double accuracy = 6;
+}
+
+message GPSData {
+  ExerciseMetadata meta = 1;
+  repeated GPSPosition positions = 2;
+}
+
+message HeartRateData {
+  ExerciseMetadata meta = 1;
+  int32 bpm = 2;
+}
+
+message CaloriesData {
+  UserMetadata meta = 1;
+  double calories = 2;
+}

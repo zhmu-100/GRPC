@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package training.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum ExcerciseReaction {
+  EXCERCISE_REACTION_UNSPECIFIED = 0;
+  EXCERCISE_REACTION_EXCELLENT = 1;
+  EXCERCISE_REACTION_GOOD = 2;
+  EXCERCISE_REACTION_OK = 3;
+  EXCERCISE_REACTION_BAD = 4;
+  EXCERCISE_REACTION_VERY_BAD = 5;
+}
+
+enum ExcerciseType {
+  EXCERCISE_TYPE_UNSPECIFIED = 0;
+  EXCERCISE_TYPE_STATIC = 1;
+  EXCERCISE_TYPE_DYNAMIC = 2;
+}
+
+enum ExcerciseName {
+  EXCERCISE_NAME_UNSPECIFIED = 0;
+  EXCERCISE_NAME_PUSHUPS = 1;
+  EXCERCISE_NAME_PULLUPS = 2;
+  EXCERCISE_NAME_SQUATS = 3;
+  EXCERCISE_NAME_PLANK = 4;
+  EXCERCISE_NAME_RUNNING = 5;
+  EXCERCISE_NAME_CYCLING = 6;
+}
+
+message Excercise {
+  ExcerciseName name = 1;
+  google.protobuf.Timestamp duration = 2;
+  ExcerciseType excercise_type = 3;
+  optional int32 sets = 4;
+  optional int32 reps = 5;
+  optional int32 distance = 6;
+  optional int32 steps = 7;
+  optional int32 bmp = 8;
+  optional int32 speed = 9;
+  optional int32 weight = 10;
+  optional double calories = 11;
+  optional ExcerciseReaction reaction = 12;
+  optional string note = 13;
+}
+
+message Workout {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp date = 3;
+  repeated Excercise excercises = 4;
+}

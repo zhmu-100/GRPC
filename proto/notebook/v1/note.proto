@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package notebook.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Note {
+  string id = 1;
+  string user_id = 2;
+  string title = 3;
+  string content = 4;
+  google.protobuf.Timestamp date = 5;
+}

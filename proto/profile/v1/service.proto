@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package profile.v1;
+
+import "google/protobuf/empty.proto";
+import "profile/v1/profile.proto";
+
+service ProfileService {
+  rpc CreateProfile(CreateProfileRequest) returns (UserProfile);
+  rpc GetProfile(GetProfileRequest) returns (UserProfile);
+  rpc ListProfiles(ListProfilesRequest) returns (ListProfilesResponse);
+  rpc UpdateProfile(UpdateProfileRequest) returns (UserProfile);
+  rpc DeleteProfile(DeleteProfileRequest) returns (google.protobuf.Empty);
+
+  rpc Follow(FollowRequest) returns (google.protobuf.Empty);
+  rpc Unfollow(UnfollowRequest) returns (google.protobuf.Empty);
+  rpc ListFollowers(ListFollowersRequest) returns (ListFollowersResponse);
+  rpc ListFollowing(ListFollowingRequest) returns (ListFollowingResponse);
+}
+
+message CreateProfileRequest {
+  UserProfile profile = 1;
+}
+
+message GetProfileRequest {
+  string id = 1;
+}
+
+message ListProfilesRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message ListProfilesResponse {
+  repeated UserProfile profiles = 1;
+}
+
+message UpdateProfileRequest {
+  UserProfile profile = 1;
+}
+
+message DeleteProfileRequest {
+  string id = 1;
+}
+
+message FollowRequest {
+  string follower_id = 1;
+  string followee_id = 2;
+}
+
+message UnfollowRequest {
+  string follower_id = 1;
+  string followee_id = 2;
+}
+
+message ListFollowersRequest {
+  string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message ListFollowersResponse {
+  repeated string follower_ids = 1;
+}
+
+message ListFollowingRequest {
+  string user_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message ListFollowingResponse {
+  repeated string following_ids = 1;
+}

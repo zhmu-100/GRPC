@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package training.v1;
+
+import "google/protobuf/empty.proto";
+import "training/v1/training.proto";
+
+service TrainingService {
+  rpc CreateWorkout(Workout) returns (Workout);
+  rpc GetWorkout(GetWorkoutRequest) returns (Workout);
+  rpc ListWorkouts(google.protobuf.Empty) returns (ListWorkoutsResponse);
+  rpc UpdateWorkout(Workout) returns (Workout);
+  rpc DeleteWorkout(DeleteWorkoutRequest) returns (google.protobuf.Empty);
+
+  rpc GetWorkoutExcercises(GetWorkoutRequest) returns (GetWorkoutExcercisesResponse);
+  rpc CreateCustomWorkout(Workout) returns (CreateCustomWorkoutResponse);
+}
+
+message GetWorkoutRequest {
+  string id = 1;
+}
+
+message ListWorkoutsResponse {
+  repeated Workout workouts = 1;
+}
+
+message DeleteWorkoutRequest {
+  string id = 1;
+}
+
+message GetWorkoutExcercisesResponse {
+  repeated Excercise excercises = 1;
+}
+
+message CreateCustomWorkoutResponse {
+  string id = 1;
+}
