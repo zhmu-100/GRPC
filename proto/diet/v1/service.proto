@@ -16,7 +16,8 @@ service DietService {
 }
 
 message CreateMealRequest {
-  Meal meal = 1;
+  string user_id = 1;
+  Meal meal = 2;
 }
 
 message GetMealRequest {
@@ -24,12 +25,14 @@ message GetMealRequest {
 }
 
 message ListMealsRequest {
-  google.protobuf.Timestamp start_date = 1;
-  google.protobuf.Timestamp end_date = 2;
+  string user_id = 1;
+  google.protobuf.Timestamp start_date = 2;
+  google.protobuf.Timestamp end_date = 3;
 }
 
 message ListMealsResponse {
-  repeated Meal meals = 1;
+  string user_id = 1;
+  repeated Meal meals = 2;
 }
 
 message CreateFoodRequest {
