@@ -38,6 +38,10 @@ message Food {
   repeated Mineral minerals = 12;
 }
 
+message FoodRef {
+  string id = 1;
+}
+
 enum MealType {
   MEAL_TYPE_UNSPECIFIED = 0;
   MEAL_TYPE_BREAKFAST = 1;
@@ -48,8 +52,9 @@ enum MealType {
 
 message Meal {
   string id = 1;
-  string name = 2;
-  MealType meal_type = 3;
-  repeated Food foods = 4;
-  google.protobuf.Timestamp date = 5;
+  string user_id = 2;
+  string name = 3;
+  MealType meal_type = 4;
+  repeated Food foods = 5;
+  google.protobuf.Timestamp date = 6;
 }
