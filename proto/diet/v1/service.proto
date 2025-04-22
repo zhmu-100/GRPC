@@ -18,7 +18,11 @@ service DietService {
 }
 
 message CreateMealRequest {
-  Meal meal = 1;
+  string user_id = 1;
+  string name = 2;
+  string MealType = 3;
+  repeated FoodRef foods = 4;
+  google.protobuf.Timestamp date = 5;
 }
 
 message GetMealRequest {
@@ -39,7 +43,7 @@ message DeleteMealRequest {
   string id = 1;
 }
 
-message DeleteMealresponse {
+message DeleteMealResponse {
   bool success = 1;
 }
 
