@@ -9,15 +9,20 @@ service DietService {
   rpc CreateMeal(CreateMealRequest) returns (Meal);
   rpc GetMeal(GetMealRequest) returns (Meal);
   rpc ListMeals(ListMealsRequest) returns (ListMealsResponse);
+  rpc DeleteMeal(DeleteMealRequest) returns (DeleteMealResponse);
 
   rpc CreateFood(CreateFoodRequest) returns (Food);
   rpc GetFood(GetFoodRequest) returns (Food);
   rpc ListFoods(ListFoodsRequest) returns (ListFoodsResponse);
+  rpc DeleteFood(DeleteFoodRequest) returns (DeleteFoodResponse);
 }
 
 message CreateMealRequest {
   string user_id = 1;
-  Meal meal = 2;
+  string name = 2;
+  string MealType = 3;
+  repeated FoodRef foods = 4;
+  google.protobuf.Timestamp date = 5;
 }
 
 message GetMealRequest {
@@ -31,8 +36,15 @@ message ListMealsRequest {
 }
 
 message ListMealsResponse {
-  string user_id = 1;
-  repeated Meal meals = 2;
+  repeated Meal meals = 1;
+}
+
+message DeleteMealRequest {
+  string id = 1;
+}
+
+message DeleteMealResponse {
+  bool success = 1;
 }
 
 message CreateFoodRequest {
@@ -49,4 +61,12 @@ message ListFoodsRequest {
 
 message ListFoodsResponse {
   repeated Food foods = 1;
+}
+
+message DeleteFoodRequest {
+  string id = 1;
+}
+
+message DeleteFoodResponse {
+  bool success = 1;
 }
