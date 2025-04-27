@@ -39,7 +39,7 @@ message PostAttachment {
   string post_id = 2;
   AttachmentType type = 3;
   int32 position = 4;
-  string url = 5;
+  string minio_id = 5;
 }
 
 message Post {
