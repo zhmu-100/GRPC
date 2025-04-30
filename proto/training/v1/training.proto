@@ -30,19 +30,20 @@ enum ExcerciseName {
 }
 
 message Excercise {
-  ExcerciseName name = 1;
-  google.protobuf.Timestamp duration = 2;
-  ExcerciseType excercise_type = 3;
-  optional int32 sets = 4;
-  optional int32 reps = 5;
-  optional int32 distance = 6;
-  optional int32 steps = 7;
-  optional int32 bmp = 8;
-  optional int32 speed = 9;
-  optional int32 weight = 10;
-  optional double calories = 11;
-  optional ExcerciseReaction reaction = 12;
-  optional string note = 13;
+  string id = 1;
+  ExcerciseName name = 2;
+  google.protobuf.Timestamp duration = 3;
+  ExcerciseType excercise_type = 4;
+  optional int32 sets = 5;
+  optional int32 reps = 6;
+  optional int32 distance = 7;
+  optional int32 steps = 8;
+  optional int32 bmp = 9;
+  optional int32 speed = 10;
+  optional int32 weight = 11;
+  optional double calories = 12;
+  optional ExcerciseReaction reaction = 13;
+  optional string note = 14;
 }
 
 message Workout {
